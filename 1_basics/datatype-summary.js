@@ -12,7 +12,7 @@ let userEmail;
 const id = Symbol('123');
 const anotherId = Symbol('123');
 
-console.log(id === anotherId);
+// console.log(id === anotherId);
 
 // Reference (Non primitive)
 
@@ -27,4 +27,30 @@ const myFunction = function(){
     console.log("Hello world");
 }
 
-console.log(typeof myFunction);
+// console.log(myFunction);
+
+// https://262.ecma-international.org/5.1/#sec-11.4.3
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// Stack (Primitive) Heap(Non-Primitive)
+
+let myName ="SandipPatel";
+
+let anotherName = myName;
+anotherName = "sasasasasa"
+
+console.log(myName);
+console.log(anotherName);
+
+let userOne ={
+    email : "user@goggle.com",
+    upi : "user@ybl"
+}
+
+let userTwo = userOne;
+
+userTwo.email = "sandip@gmail.com";
+
+console.log(userOne.email);
+console.log(userTwo.email);
