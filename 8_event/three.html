@@ -7,18 +7,28 @@
 </head>
 <body>
     <h1>Async Javascript</h1>
+    <ul id="list">
+    </ul>
     <button id="start">Start</button>
     <button id="stop">Stop</button>
 </body>
 <script>
-    const sayDate = function(str){
-        console.log(str,Date.now());
+    let intervalId;
+    
+    const sayDate = function(str) {
+        const data = Date.now();
+        const node = document.createElement("li");
+        const textnode = document.createTextNode(data);
+        node.appendChild(textnode);
+        document.getElementById("list").appendChild(node);
+    };
+   const start = function() {
+        intervalId = setInterval(sayDate, 1000);
     }
-    const intervalId = setInterval(sayDate,1000,'HI');
-
-    clearInterval(intervalId);
-    const start = document.querySelector('#start').addEventListener('click',function(){
-        document.querySelector('h1').innerHTML = setInterval(Date.now(),1000);   
-    })
+    const stop =  function() {
+        clearInterval(intervalId);
+    }
+    document.querySelector('#start').addEventListener('click',start);
+    document.querySelector('#stop').addEventListener('click',stop);
 </script>
 </html>
