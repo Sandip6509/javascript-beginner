@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Request</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="card">
+        <img src="" alt="Avatar" style="width:100%" class="img">
+        <div class="container">
+            <h4></h4>
+            <h5></div>
+        </div>
+    </div>
+</body>
+<script>
+    const requestUrl = 'https://api.github.com/users/sandip6509';
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requestUrl);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            const data = JSON.parse(this.responseText);
+            const card = {
+                name: data.login,
+                profile: data.avatar_url,
+                follower: data.followers
+            }
+            const changeText = function () {
+                const image = document.querySelector('.img');
+                image.src = card.profile;
+                document.querySelector('h4').innerHTML = card.name;
+                document.querySelector('h5').innerHTML = `Followers: ${card.follower}`;
+            }
+            setInterval(changeText);
+        }
+    }
+    xhr.send();
+</script>
+
+</html>
